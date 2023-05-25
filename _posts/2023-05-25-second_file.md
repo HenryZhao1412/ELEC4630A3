@@ -100,13 +100,22 @@ dls = DataBlock(
 
 dls.show_batch(max_n=6)
 ```
-This part of code is similar to the DataLoader code I written in my first blog.
+This part of code is similar to the DataLoader code I written in my first blog.<br>
 
+After the DataLoader code executed, it would show off 6 images.
 
+```python
+learn = vision_learner(dls, resnet18, metrics=error_rate)
+learn.fine_tune(3)
+```
+Use the pretrained architecture resnet18 to train our model, and it would be trained for 3 times.
 
-
-
-
+```python
+is_bird,_,probs = learn.predict(PILImage.create('bird.jpg'))
+print(f"This is a: {is_bird}.")
+print(f"Probability it's a bird: {probs[0]:.4f}")
+```
+Create a image of bird, and send it to our model to predict.
 
 
 
